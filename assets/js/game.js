@@ -1,22 +1,38 @@
+var fightOrSkip = function() {
+    // Ask player if they'd like to FIGHT or SKIP this battle
+    var promptFight = prompt('Would you like to FIGHT or SKIP this battle? Enter FIGHT or SKIP to choose.');
+
+    // Conditional recursive function call
+    if (promptFight === "" || promptFight === null) {
+        alert("You need to provide a valid answer! Please try again.");
+        return fightOrSkip();
+    }
+
+    promptFight = promptFight.toLowerCase();
+
+    // If player picks "skip" confirm and then stop the loop
+    if (promptFight === "skip" || promptFight === "SKIP") {
+        // Confirm
+        var confirmSkip = confirm("Are you sure you'd like to quit?");
+
+        // If yes, leave fight
+        if (confirmSkip) {
+            alert(playerInfo.name + " has decided to skip this fight. Goodbye!");
+            playerInfo.money = Math.max(0, playerInfo.money - 10);
+            shop();
+
+            return true;
+        }
+    }
+
+    return false;
+}
 var fight = function(enemy) {
     // Repeat and execute as long as the enemy-robot is alive
-    while(playerInfo.health > 0 && enemy.health > 0) {
-        // Ask player if they'd like to fight or run
-        var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
-
-        // If player picks "skip" confirm and then stop the loop
-        if (promptFight === "skip" || promptFight === "SKIP") {
-            // Confirm player wants to skip
-            var confirmSkip = window.confirm("Are you sure you'd like to quit?");
-
-            // If yes (true), leave fight
-            if (confirmSkip) {        
-                window.alert(playerInfo.name + " has decided to skip the fight. Goodbye!");
-                // Subtract money from playerInfo.money for skipping
-                playerInfo.money = Math.max(0, playerInfo.money - 10);
-                console.log("playerInfo.money", playerInfo.money);
-                break;
-            }
+    while (playerInfo.health > 0 && enemy.health > 0) {
+        if (fightOrSkip()) {
+            // If true, leave fight by breaking loop
+            break;
         }
         
         // Subtract the value of 'playerInfo.attack' from the value of 'enemy.health' and use that result to update the value in the 'enemy.health' variable.
