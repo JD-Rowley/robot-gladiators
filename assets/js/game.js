@@ -64,7 +64,6 @@ var fight = function(enemy) {
 
 // Function to start a new game
 var startGame = function() {
-// debugger
     // Reset player stats
     playerInfo.reset();
 
@@ -78,9 +77,6 @@ var startGame = function() {
 
             // Reset enemy.health before starting a new fight
             pickedEnemyObj.health = randomNumber(40, 60);
-
-            // Use debugger to pause script and check what's going on
-            // debugger
 
             // Pass the pickedenemy.name variable's value into the fight function
             fight(pickedEnemyObj);
@@ -163,8 +159,19 @@ var randomNumber = function(min, max) {
     return value;
 };
 
+var getPlayerName = function() {
+    var name = "";
+
+    while (name === "" || name === null) {
+        name = prompt("What is your robot's name?");
+    }
+
+    console.log("Your robot's name is " + name);
+    return name;
+};
+
 var playerInfo = {
-    name: window.prompt("What is your robot's name?"),
+    name: getPlayerName(),
     health: 100,
     attack: 10,
     money: 10,
