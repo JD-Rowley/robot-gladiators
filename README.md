@@ -20,3 +20,5 @@
 
   ### GitHub Repo: https://github.com/JD-Rowley/robot-gladiators
   
+Click the image to be taken to the URL of the deployed app.
+[![Sample Page Layout](/assets/img/robot-gladiators.JPG)](https://jd-rowley.github.io/robot-gladiators/)
